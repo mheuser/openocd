@@ -135,6 +135,9 @@ struct stm32lx_flash_bank {
 	const struct stm32lx_part_info *part_info;
 };
 
+static const struct stm32lx_rev stm32_415_revs[] = {
+	{ 0x1000, "A" },
+};
 static const struct stm32lx_rev stm32_416_revs[] = {
 	{ 0x1000, "A" }, { 0x1008, "Y" }, { 0x1038, "W" }, { 0x1078, "V" },
 };
@@ -155,6 +158,19 @@ static const struct stm32lx_rev stm32_437_revs[] = {
 };
 
 static const struct stm32lx_part_info stm32lx_parts[] = {
+	{
+		.id					= 0x415,
+		.revs				= stm32_415_revs,
+		.num_revs			= ARRAY_SIZE(stm32_415_revs),
+		.device_str			= "STM32L4xx",
+		.page_size			= 2048,
+		.pages_per_sector	= 256,
+		.max_flash_size_kb	= 1024,
+		.first_bank_size_kb	= 512,
+		.has_dual_banks		= true,
+		.flash_base			= 0x40022000,
+		.fsize_base			= 0x1FF800CC,
+	},
 	{
 		.id					= 0x416,
 		.revs				= stm32_416_revs,
